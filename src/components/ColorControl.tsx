@@ -1,32 +1,31 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 
 import { cnColorControl } from './ColorControl.classname';
+import { ColorRGB, PickerColor } from './ColorControl/Picker/Picker';
 
 import './ColorControl.css';
+import { ColorArticle } from './ColorArticle/ColorArticle';
 
-const DEFAULT_COLOR = { blue: '116', green: '148', red: '170', opacity: '0.7' };
+const DEFAULT_COLOR = { blue: 11, green: 148, red: 170, opacity: 0.7 };
 
 const ColorControl = () => {
     const [color, setColor] = useState(DEFAULT_COLOR);
 
-    const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const eventNameColor = event.target.name;
+    const handleOnChange = (value: ColorRGB) => {
 
-        setColor({ ...color, [eventNameColor]: event.target.value });
+        console.log(color)
+        setColor(prev => ({
+            ...prev, ...value
+        }));
     }
 
     const customColor = `rgb(${color.red}, ${color.blue}, ${color.green}, ${color.opacity})`;
 
     return (
         <div className={cnColorControl('')}>
-            <div className={cnColorControl('Container')} onChange={handleOnChange}>
-                <label htmlFor="color">Выбор цвета</label>
-                <input type="range" id="color" min="0" max="255" name="red" className={cnColorControl('Input')} />
-                <input type="range" id="color" min="0" max="255" name="green" className={cnColorControl('Input')} />
-                <input type="range" id="color" min="0" max="255" name="blue" className={cnColorControl('Input')} />
-                <input type="range" id="color" min="0" max="1.1" step="0.1" name="opacity" className={cnColorControl('Input')} />
-                <div className={cnColorControl('BoxColor')} style={{ backgroundColor: customColor }} />
-            </div>
+            <PickerColor OnChange={handleOnChange} />
+            <div className={cnColorControl('BoxColor')} style={{ backgroundColor: customColor }} />
+            <ColorArticle title={'Самокритика'} text={'Что ты написал парень!'} color={color} />
         </div>
     );
 }

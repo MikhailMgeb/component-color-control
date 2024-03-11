@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ColorControl } from './components/ColorControl';
+import { ColorControl } from './components/ColorControl/ColorControl';
 
 const App = () => {
   return (

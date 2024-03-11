@@ -17,7 +17,6 @@ type PickerColorProps = {
 }
 
 const PickerColor: FC<PickerColorProps> = ({ OnChange, currentColors }) => {
-    console.log(currentColors)
 
     const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
         OnChange({ [event.target.name]: event.target.value });

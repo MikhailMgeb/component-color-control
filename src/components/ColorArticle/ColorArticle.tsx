@@ -9,16 +9,14 @@ type ColorArticleProps = {
     title: string;
     text: string;
     color: ColorRGB;
+    customColor: (arg1: ColorRGB) => string;
 }
 
-const ColorArticle: FC<ColorArticleProps> = ({ title, text, color }) => {
-
-    const customColor = `rgb(${color.red}, ${color.blue}, ${color.green}, ${color.opacity})`;
-
+const ColorArticle: FC<ColorArticleProps> = ({ title, text, color, customColor }) => {
     return (
         <div className={cnColorArticle('')}>
-            <h2 className={cnColorArticle('Title')} style={{ color: customColor }}>{title}</h2>
-            <p className={cnColorArticle('Text')} style={{ color: customColor }}>{text}</p>
+            <h2 className={cnColorArticle('Title')} style={{ color: customColor(color) }}>{title}</h2>
+            <p className={cnColorArticle('Text')} style={{ color: customColor(color) }}>{text}</p>
         </div>
     );
 }

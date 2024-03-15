@@ -1,5 +1,6 @@
 .ColorControl-Picker {
     display: flex;
+    max-width: 300px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;

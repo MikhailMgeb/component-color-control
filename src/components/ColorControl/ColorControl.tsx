@@ -12,6 +12,7 @@ const ColorControl = () => {
     const [color, setColor] = useState(DEFAULT_COLOR);
 
     const handleOnChange = (value: ColorRGB) => {
+        console.log(value)
         setColor(prev => ({
             ...prev, ...value
         }));

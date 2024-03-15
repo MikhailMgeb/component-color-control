@@ -1,8 +1,10 @@
 import React, { ChangeEvent, FC } from 'react';
 
 import { cnColorControl } from '../ColorControl.classname';
+import { Slider } from '@material-ui/core';
 
 import './Picker.css';
+
 
 export type ColorRGB = {
     blue?: number;
@@ -17,23 +19,27 @@ type PickerColorProps = {
 }
 
 const PickerColor: FC<PickerColorProps> = ({ OnChange, currentColors }) => {
-    const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-        OnChange({ ...currentColors, [event.target.name]: event.target.value });
+    const handleOnChange = (colorName: string, value: number | number[]) => {
+        OnChange({ ...currentColors, [colorName]: value });
     }
 
     return (
-        <div className={cnColorControl('Picker')} onChange={handleOnChange}>
+        <div className={cnColorControl('Picker')}>
             <label htmlFor="color">Выбор цвета</label>
-            <input type="range" id="color" min="0" max="255" name="red" defaultValue={currentColors.red} className={cnColorControl('InputRed')} />
-            <input type="range" id="color" min="0" max="255" name="green" defaultValue={currentColors.green} className={cnColorControl('InputGreen')} />
-            <input type="range" id="color" min="0" max="255" name="blue" defaultValue={currentColors.blue} className={cnColorControl('InputBlue')} />
-            <input type="range" id="color" min="0" max="1.0" step="0.1" defaultValue={currentColors.opacity} name="opacity" className={cnColorControl('InputOpacity')} />
+            <Slider min={0} max={255} className={cnColorControl('SliderRed')}
+                value={currentColors.red} onChange={(event, value) => handleOnChange('red', value)} />
+            <Slider min={0} max={255} className={cnColorControl('SliderGreen')}
+                value={currentColors.green} onChange={(event, value) => handleOnChange('green', value)} />
+            <Slider min={0} max={255} className={cnColorControl('SliderBlue')}
+                value={currentColors.blue} onChange={(event, value) => handleOnChange('blue', value)} />
+            <Slider min={0} max={1} step={0.1} className={cnColorControl('SliderOpacity')}
+                value={currentColors.opacity} onChange={(event, value) => handleOnChange('opacity', value)} />
+
         </div>
     );
 }
 
 export { PickerColor };
-
 
 
 

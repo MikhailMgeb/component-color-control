@@ -1,6 +1,6 @@
 .ColorControl {
     display: flex;
-    align-items: center;
-    gap: 5px;
+    align-items: stretch;
+    gap: 10px;
     margin: 50px;
 }

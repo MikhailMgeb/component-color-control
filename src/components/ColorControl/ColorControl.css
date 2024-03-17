@@ -1,5 +1,6 @@
-.ColorControl-BoxColor {
-    width: 129px;
-    height: 16px;
-    background-color: rgb(245, 245, 220);
+.ColorControl {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 50px;
 }

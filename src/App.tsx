@@ -18,17 +18,17 @@ const App = () => {
   const [colorBackground, setColorBackground] = useState(INITIAL_COLORS);
 
   const handleChangeColorText = (color: ColorRGB) => {
-    setColorText((prev) => ({ ...prev, ...color }))
-  }
+    setColorText((prev) => ({ ...prev, ...color }));
+  };
 
   const handleChangeColorBackground = (color: ColorRGB) => {
-    setColorBackground((prev) => ({ ...prev, ...color }))
-  }
+    setColorBackground((prev) => ({ ...prev, ...color }));
+  };
 
   const generalColors = {
     textColor: changeRGB(colorText),
     backgroundColor: changeRGB(colorBackground)
-  }
+  };
 
   return (
     <div className="App">

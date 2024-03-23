@@ -18,22 +18,22 @@ const App = () => {
   const [colorBackground, setColorBackground] = useState(INITIAL_COLORS);
 
   const handleChangeColorText = (color: ColorRGB) => {
-    setColorText((prev) => ({ ...prev, ...color }))
-  }
+    setColorText((prev) => ({ ...prev, ...color }));
+  };
 
   const handleChangeColorBackground = (color: ColorRGB) => {
-    setColorBackground((prev) => ({ ...prev, ...color }))
-  }
+    setColorBackground((prev) => ({ ...prev, ...color }));
+  };
 
   const generalColors = {
     textColor: changeRGB(colorText),
     backgroundColor: changeRGB(colorBackground)
-  }
+  };
 
   return (
     <div className="App">
-      <ColorControl value={colorText} onChange={handleChangeColorText} />
-      <ColorControl value={colorBackground} onChange={handleChangeColorBackground} />
+      <ColorControl value={colorText} onChangeUser={handleChangeColorText} />
+      <ColorControl value={colorBackground} onChangeUser={handleChangeColorBackground} />
       <ColorArticle title={title} text={text} colors={generalColors} />
     </div>
   );

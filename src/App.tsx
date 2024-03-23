@@ -32,8 +32,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <ColorControl value={colorText} onChange={handleChangeColorText} />
-      <ColorControl value={colorBackground} onChange={handleChangeColorBackground} />
+      <ColorControl value={colorText} onChangeUser={handleChangeColorText} />
+      <ColorControl value={colorBackground} onChangeUser={handleChangeColorBackground} />
       <ColorArticle title={title} text={text} colors={generalColors} />
     </div>
   );

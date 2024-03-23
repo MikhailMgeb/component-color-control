@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from 'react';
+import React, { FC } from 'react';
 import Slider from '@mui/material/Slider';
 import Box from '@mui/material/Box';
 
@@ -20,36 +20,38 @@ type initialValueProps = {
         green: number;
         opacity: number;
     }
-    onChange: (arg: ColorRGB) => void;
+    onChangeUser: (arg: ColorRGB) => void;
 }
 
-const ColorControl: FC<initialValueProps> = ({ value, onChange }) => {
+const ColorControl: FC<initialValueProps> = ({ value, onChangeUser }) => {
 
-    const changeColor = (event: ChangeEvent<HTMLInputElement>) => {
-        onChange({ [event.target.name]: event.target.value });
-    }
+    const handleChange = (event: Event, newValue: number | number[]) => {
+        const target = event.target as HTMLInputElement;
+
+        onChangeUser({ [target.name]: newValue });
+    };
 
     return (
         <div className={cnColorControl('')}>
             <label className={cnColorControl('Label')} htmlFor='ColorRed'>Красный</label>
             <Box sx={{ width: 150 }}>
                 <Slider value={value.red} aria-label="Default" valueLabelDisplay="auto" name='red' min={0} max={255} step={1}
-                    onChange={(event: any) => { changeColor(event) }} />
+                    onChange={handleChange} />
             </Box>
             <label className={cnColorControl('Label')} htmlFor='ColorBlue'>Синий</label>
             <Box sx={{ width: 150 }}>
                 <Slider value={value.blue} aria-label="Default" valueLabelDisplay="auto" name='blue' min={0} max={255} step={1}
-                    onChange={(event: any) => { changeColor(event) }} />
+                    onChange={handleChange} />
             </Box>
             <label className={cnColorControl('Label')} htmlFor='ColorGreen' >Зеленый</label>
             <Box sx={{ width: 150 }}>
                 <Slider value={value.green} aria-label="Default" valueLabelDisplay="auto" name='green' min={0} max={255} step={1}
-                    onChange={(event: any) => { changeColor(event) }} />
+                    onChange={handleChange} />
             </Box>
             <label className={cnColorControl('Label')} >Прозрачность</label>
             <Box sx={{ width: 150 }}>
                 <Slider value={value.opacity} aria-label="Default" valueLabelDisplay="auto" name='opacity' min={0} max={255} step={1}
-                    onChange={(event: any) => { changeColor(event) }} />
+                    onChange={handleChange} />
             </Box>
         </div>
     )
